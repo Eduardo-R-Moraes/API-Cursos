@@ -31,6 +31,13 @@ public class Aluno {
     @Column(name = "data_matricula", nullable = false)
     private LocalDate dataMatricula; 
 
+    public Aluno(AlunoDTO alunodto) {
+        this.id = alunodto.id();
+        this.nome = alunodto.nome();
+        this.email = alunodto.email();
+        this.dataMatricula = alunodto.dataMatricula();
+    }
+
     public Aluno(AlunoInsertDTO alunodto) {
         this.nome = alunodto.nome();
         this.email = alunodto.email();

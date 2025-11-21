@@ -37,6 +37,15 @@ public class Curso {
     @Column(name = "data_criacao", nullable = false)
     private LocalDateTime dataCriacao;
 
+    public Curso(CursoDTO cursodto) {
+        this.id = cursodto.id();
+        this.nome = cursodto.nome();
+        this.descricao = cursodto.descricao();
+        this.cargaHoraria = cursodto.cargaHoraria();
+        this.status = cursodto.status();
+        this.dataCriacao = cursodto.dataCriacao();
+    }
+
     public Curso(CursoInsertDTO cursodto) {
         this.nome = cursodto.nome();
         this.descricao = cursodto.descricao();

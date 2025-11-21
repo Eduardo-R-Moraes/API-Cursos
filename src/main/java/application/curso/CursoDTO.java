@@ -1,12 +1,14 @@
 package application.curso;
 
+import java.time.LocalDateTime;
+
 public record CursoDTO(
     long id,
     String nome,
     String descricao,
     int cargaHoraria,
     String status,
-    String dataCriacao
+    LocalDateTime dataCriacao
 ) {
     public CursoDTO(Curso curso) {
         this(
@@ -15,7 +17,7 @@ public record CursoDTO(
             curso.getDescricao(),
             curso.getCargaHoraria(),
             curso.getStatus(),
-            curso.getDataCriacao().toString()
+            curso.getDataCriacao()
         );
     }
 }

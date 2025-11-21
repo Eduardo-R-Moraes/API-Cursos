@@ -22,6 +22,8 @@ public class CursoController {
     @Autowired
     private CursoService cursoService;
 
+
+    // Get
     @GetMapping
     @Operation(summary = "Listar cursos", description = "Retorna a lista de todos os cursos")
     @ApiResponse(responseCode = "200", description = "Lista de cursos retornada com sucesso")
@@ -29,6 +31,8 @@ public class CursoController {
         return cursoService.findAll();
     }
 
+
+    // Get by ID
     @GetMapping("/{id}")
     @Operation(summary = "Obter curso por ID", description = "Retorna os dados de um curso a partir do seu identificador")
     @ApiResponses({
@@ -39,23 +43,32 @@ public class CursoController {
         return cursoService.findById(id);
     }
 
+
+    // Post
     @PostMapping
     @Operation(summary = "Criar curso", description = "Cria um novo curso com os dados fornecidos")
     @ApiResponse(responseCode = "201", description = "Curso criado com sucesso")
-    public CursoDTO create(@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Dados para criação do curso", required = true) @RequestBody CursoInsertDTO dados) {
+    public CursoDTO create(@RequestBody CursoInsertDTO dados) {
         return cursoService.create(dados);
     }
 
+
+    // Put
     @PutMapping("/{id}")
     @Operation(summary = "Atualizar curso", description = "Atualiza os dados do curso identificado pelo ID")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Curso atualizado com sucesso"),
         @ApiResponse(responseCode = "404", description = "Curso não encontrado")
     })
-    public CursoDTO update(@Parameter(description = "ID do curso", required = true) @PathVariable long id, @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Novos dados do curso", required = true) @RequestBody CursoInsertDTO dados) {
+    public CursoDTO update(
+        @Parameter(description = "ID do curso", required = true) 
+        @PathVariable long id, 
+        @RequestBody CursoInsertDTO dados) {
         return cursoService.update(id, dados); 
     }
 
+
+    // Delete
     @DeleteMapping("/{id}")
     @Operation(summary = "Remover curso", description = "Remove o curso identificado pelo ID")
     @ApiResponses({

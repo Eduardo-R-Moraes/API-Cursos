@@ -43,7 +43,7 @@ public class AlunoController {
     @PostMapping()
     @Operation(summary = "Criar aluno", description = "Cria um novo aluno com os dados fornecidos")
     @ApiResponse(responseCode = "201", description = "Aluno criado com sucesso")
-    public AlunoDTO create(@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Dados para criação do aluno", required = true) @RequestBody AlunoInsertDTO dados) {
+    public AlunoDTO create(@RequestBody AlunoInsertDTO dados) {
         return alunoService.create(dados);
     }
 
@@ -53,7 +53,7 @@ public class AlunoController {
         @ApiResponse(responseCode = "200", description = "Aluno atualizado com sucesso"),
         @ApiResponse(responseCode = "404", description = "Aluno não encontrado")
     })
-    public AlunoDTO update(@Parameter(description = "ID do aluno", required = true) @PathVariable long id, @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Novos dados do aluno", required = true) @RequestBody AlunoInsertDTO dados) {
+    public AlunoDTO update(@Parameter(description = "ID do aluno", required = true) @PathVariable long id, @RequestBody AlunoInsertDTO dados) {
         return alunoService.update(id, dados);
     }
 
